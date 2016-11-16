@@ -24,7 +24,7 @@ class WindowsController
 	end
 
 	def stop
-		command = 'taskkill /IM ' + @browser
+		command = 'taskkill /F /IM ' + @browser
 		puts "Command to run #{command}"
 		`#{command}` ;  result=$?.success?
 		result
