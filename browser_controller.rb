@@ -41,7 +41,7 @@ class Controller
 		case browser.downcase
 		when 'chrome'
 			@controller.setup("Google Chrome", "chrome.exe", proxy, url)
-		when 'edge'
+		when 'explorer'
 			@controller.setup("Internet Explorer", "iexplore.exe", proxy, url)
 		when 'safari'
 			@controller.setup("Safari", "safari.exe", proxy, url)
