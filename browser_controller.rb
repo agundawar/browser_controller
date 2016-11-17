@@ -65,17 +65,6 @@ class Controller
 end
 
 c = Controller.new
-# c.setup("chrome", nil, "http://www.techcrunch.com")
-# c.start
-# sleep 10
-# c.stop 
-# c.cleanup("chrome")
-
-# c.setup("firefox", nil, "http://www.techcrunch.com")
-# c.cleanup("firefox")
-# c.start
-# sleep 5
-# c.stop
 
 # # REST Endpoints
 	post '/start/:browser' do
