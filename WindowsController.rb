@@ -30,6 +30,23 @@ class WindowsController
 		result
 	end
 
-	def cleanup
+	def chrome_cleanup
+		puts "Chrome cleanup called"
+	end
+
+	def firefox_cleanup
+		puts "Firefox cleanup called"
+	end
+
+	def explorer_cleanup
+		puts "Explorer cleanup called"
+	end
+	
+	def cleanup(browser)
+		case browser.downcase
+			when "chrome" then self.chrome_cleanup
+			when "firefox" then self.firefox_cleanup
+			when "iexplore" then self.explorer_cleanup
+		end
 	end
 end

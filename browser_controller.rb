@@ -54,29 +54,30 @@ class Controller
 		@controller.start
 	end
 
-	def stop
+	def stop(browser)
 		@controller.stop
 	end
 
-	def cleanup
-		@controller.cleanup
+	def cleanup(browser)
+		@controller.cleanup(browser)
 	end
 
 end
 
 c = Controller.new
-
-# w = WindowsController.new
-# w.setup('Firefox', 'firefox', nil, 'http://www.techcrunch.com')
-# w.start
-# w.stop
-
-# c.setup('firefox', nil, 'http://www.techcrunch.com')
+# c.setup("chrome", nil, "http://www.techcrunch.com")
 # c.start
-# sleep(5)
+# sleep 10
+# c.stop 
+# c.cleanup("chrome")
+
+# c.setup("firefox", nil, "http://www.techcrunch.com")
+# c.cleanup("firefox")
+# c.start
+# sleep 5
 # c.stop
 
-# REST Endpoints
+# # REST Endpoints
 	post '/start/:browser' do
 	puts "#{Time.now} Start browser request"
 	request.body.rewind
@@ -99,8 +100,8 @@ c = Controller.new
 		{'message' => message}.to_json
 	else
 		c.setup(params[:browser], proxy, url)
-		sucess = c.start
-		if sucess
+		success = c.start
+		if success
 			status 200
 			{'message' => 'Browser start sucess'}.to_json
 		else
@@ -110,10 +111,10 @@ c = Controller.new
 	end
 end
 
-get '/stop/' do
+get '/stop/:browser' do
 	puts "#{Time.now} Stop browser request"
-	sucess = c.stop
-	if sucess
+	success = c.stop params[:browser]
+	if success
 		status 200
 		{'message' => 'Browser stop sucess'}.to_json
 	else
@@ -122,7 +123,14 @@ get '/stop/' do
 	end
 	end
 
-get '/cleanup/' do
-	puts "#{Time.now} Cleanup browser request"
-	c.cleanup
+get '/cleanup/:browser' do
+	puts "#{Time.now} Browser cleanup  request for #{params[:browser]}"
+	success = c.cleanup params[:browser]
+	if success
+		status 200
+		{'message' => 'Browser cleanup sucess'}.to_json
+	else
+		status 500
+		{'message' => 'Browser cleanup failed'}.to_json
+	end	
 end

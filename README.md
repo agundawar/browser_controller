@@ -12,7 +12,9 @@ Port used 8080
 
 	-	POST /start/:browser : To start the browser on the server (Allowed values for browser - "firefox", "chrome", "safari", "explorer"). Also accepts JSON body with "key" & "proxy" as optional parameters
 
-	-	GET /stop : To stop the browser
+	-	GET /stop/:browser : To stop the browser (Allowed values for browser - "firefox", "chrome", "safari", "explorer")
+
+	-	GET /cleanup/:browser : To cleanup the browser (Allowed values for browser - "firefox", "chrome", "safari", "explorer")
 
 
 ### OS supported
